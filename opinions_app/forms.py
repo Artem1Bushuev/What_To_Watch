@@ -11,7 +11,8 @@ class OpinionForm(FlaskForm):
         validators=[DataRequired(message="Обязательное поле"), Length(1, 128)],
     )
     text = TextAreaField(
-        "Напишите мнение", validators=[DataRequired(message="Обязательное поле")]
+        "Напишите мнение",
+        validators=[DataRequired(message="Обязательное поле")],
     )
     source = URLField(
         "Добавьте ссылку на подробный обзор фильма",

@@ -12,7 +12,9 @@ def register_cli_commands(app):
     @app.cli.command("load_opinions")
     def load_opinions_command():
         """Загружает мнения из opinions.csv в базу данных."""
-        csv_path = "opinions.csv"  # путь относительно текущей рабочей директории
+        csv_path = (
+            "opinions.csv"  # путь относительно текущей рабочей директории
+        )
         counter = 0
         with open(csv_path, encoding="utf-8") as f:
             reader = csv.DictReader(f)

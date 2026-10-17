@@ -13,7 +13,9 @@ def create_app():
     app = Flask(__name__)
 
     # Самое важное: секретный ключ для CSRF и сессий
-    app.config["SECRET_KEY"] = "dev-key-change-in-production"  # <-- добавь эту строку
+    app.config["SECRET_KEY"] = (
+        "dev-key-change-in-production"  # <-- добавь эту строку
+    )
 
     # Определяем корень проекта
     project_root = os.path.dirname(os.path.abspath(__file__))
