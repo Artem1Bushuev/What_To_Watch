@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {% if opinion %}
+    Мнение о фильме # {{ opinion.id }}
+  {% else %}
+    Нет мнений
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+<main>
+  <section class="container my-5">
+    <div class="row">
+      {% if opinion %}
+        <h1>{{ opinion.title }}</h1>
+        <div class="col-12 col-lg-7 my-5">
+          <p>{{ opinion.text }}</p>
+          <p>
+            Больше о фильме: 
+            {% if opinion.source %}
+              <a href="{{ opinion.source }}">{{ opinion.source }}</a>
+            {% else %}
+              источник не указан
+            {% endif %}
+          </p>
+          <p>
+            Ссылка для друзей:
+            <a href="{{ url_for('views.opinion_view', id=opinion.id, _external=True) }}">
+              Поделиться мнением #{{ opinion.id }}
+            </a>
+          </p>
+        </div>
+        <div class="col-12 col-lg-5">
+          <img class="img-fluid mx-auto d-block" src="{{ url_for('static', filename='img/illustration.png') }}" alt="" />
+        </div>
+      {% else %}
+        <!-- Показываем это, если в базе нет ни одного мнения -->
+        <div class="col-12">
+          <h2>Пока нет ни одного мнения</h2>
+          <p>Добавьте первое мнение на странице <a href="{{ url_for('views.add_opinion_view') }}">добавления</a>.</p>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+</main>
+{% endblock %}
